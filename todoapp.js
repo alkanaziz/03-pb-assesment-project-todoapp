@@ -13,15 +13,33 @@ function taskListConvert(taskList) {
 }
 
 
-function displayTasks() {
+function displayTasks(taskArr) {
 
-    if (taskList.length === 0) {
+    console.clear();
+    
+    const longestTaskStr = taskList.map(item => item.taskName.length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
+    // console.log(longestTaskStr)
+    
+    const allTaskLength = taskList.map(item => Object.values(item).join("").length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
+    // console.log(allTaskLength)
+    
+    if (taskArr.length === 0) {
         console.log('No tasks available.');
     } else {
         console.log('Here are your tasks:');
-        taskList.forEach((task, index) => {
-            console.log(`${index + 1}. ${task.taskName} - ${task.status} (id: ${task.id})`);
-        });
+        let minusAdd = "---------------------------";
+        for (let i = 0; i < allTaskLength; i++) {
+            minusAdd = minusAdd + "-";
+        };
+        for (let i = 0; i < taskArr.length; i++) {
+            let taskName = taskArr[i].taskName;
+            for(let i = taskName.length; i < longestTaskStr+1; i++) {
+                taskName = taskName + " ";
+            }
+            console.log(minusAdd);
+            console.log(`| ${i + 1}. | ${taskName} | ${taskArr[i].status} | (id: ${taskArr[i].id}) \t|`);
+        }
+        console.log(minusAdd);
     }
 }
 
@@ -67,14 +85,7 @@ function editTask() {
 function searchTask() {
     const searchInput = readlineSync.question('Enter the search key: ');
     const searchOutput = taskList.filter(task => Object.values(task).join(", ").toLowerCase().includes(searchInput.toLowerCase()));
-    if (searchOutput.length === 0) {
-        console.log(`No tasks available with key "${searchInput}".`);
-    } else {
-        console.log('Here are your tasks:');
-        searchOutput.forEach((task, index) => {
-            console.log(`${index + 1}. ${task.taskName} - ${task.status} (id: ${task.id})`);
-        });
-    }
+    displayTasks(searchOutput);
 }
 
 while (true) {
@@ -93,22 +104,19 @@ while (true) {
 
     switch (option) {
         case 1:
-            console.clear();
-            displayTasks();
+            displayTasks(taskList);
             break;
         case 2:
-            console.clear();
-            displayTasks()
+            displayTasks(taskList)
             addTask();
+            displayTasks(taskList)
             break;
         case 3:
-            console.clear();
-            displayTasks()
+            displayTasks(taskList)
             deleteTask();
             break;
         case 4:
-            console.clear();
-            displayTasks()
+            displayTasks(taskList)
             editTask();
             break;
         case 5:
