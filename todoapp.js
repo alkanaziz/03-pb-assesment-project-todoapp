@@ -17,10 +17,10 @@ function displayTasks(taskArr) {
 
     console.clear();
     
-    const longestTaskStr = taskList.map(item => item.taskName.length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
+    let longestTaskStr = taskList.map(item => item.taskName.length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
     // console.log(longestTaskStr)
     
-    const allTaskLength = taskList.map(item => Object.values(item).join("").length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
+    let allTaskLength = taskList.map(item => Object.values(item).join("").length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
     // console.log(allTaskLength)
     
     if (taskArr.length === 0) {
@@ -41,8 +41,8 @@ function displayTasks(taskArr) {
         }
         console.log(minusAdd);
     }
-}
-
+}   
+    
 function addTask() {
     const taskName = readlineSync.question('Enter the task name: ');
     // BUG TASK ID
@@ -52,7 +52,6 @@ function addTask() {
     taskListConvert(taskList);
 }
 
-// BUG TASK ID NOT FOUND
 function deleteTask() {
     const id = readlineSync.questionInt('Enter the task id to delete: ');
     taskIdList = taskList.map(m => m.id);
