@@ -2,6 +2,34 @@ console.clear();
 import readlineSync from 'readline-sync';
 import fs from 'fs';
 
+// const dciWebDev = `
+//  ____   ____ ___  __        _______ ____    ____  _______     __
+// |  _ \\ / ___|_ _| \\ \\      / / ____| __ )  |  _ \\| ____\\ \\   / /
+// | | | | |    | |   \\ \\ /\\ / /|  _| |  _ \\  | | | |  _|  \\ \\ / / 
+// | |_| | |___ | |    \\ V  V / | |___| |_) | | |_| | |___  \\ V /  
+// |____/ \\____|___|    \\_/\\_/  |_____|____/  |____/|_____|  \\_/   
+// `;
+
+// const jsProject = `
+//      _ ____    ____  ____   ___      _ _____ ____ _____ 
+//     | / ___|  |  _ \\|  _ \\ / _ \\    | | ____/ ___|_   _|
+//  _  | \\___ \\  | |_) | |_) | | | |_  | |  _|| |     | |  
+// | |_| |___) | |  __/|  _ <| |_| | |_| | |__| |___  | |  
+//  \\___/|____/  |_|   |_| \\_\\\\___/ \\___/|_____\\____| |_|  
+// `;
+
+// const toDoApp = `
+//  _ _ _____     ____             _               _ _ 
+// ( | )_   _|__ |  _ \\  ___      / \\   _ __  _ __( | )
+//  V V  | |/ _ \\| | | |/ _ \\    / _ \\ | '_ \\| '_ \\V V 
+//       | | (_) | |_| | (_) |  / ___ \\| |_) | |_) |   
+//       |_|\\___/|____/ \\___/  /_/   \\_\\ .__/| .__/    
+//                                     |_|   |_|       
+// `;
+
+// console.log(dciWebDev);
+// console.log(jsProject);
+// console.log(toDoApp);
 
 var taskListJSON = fs.readFileSync('tasklist.json', 'utf8');
 let taskList = JSON.parse(taskListJSON);
@@ -17,27 +45,22 @@ function displayTasks(taskArr) {
 
     console.clear();
     
-    let longestTaskStr = taskList.map(item => item.taskName.length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
-    // console.log(longestTaskStr)
-    
-    let allTaskLength = taskList.map(item => Object.values(item).join("").length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
-    // console.log(allTaskLength)
-    
     if (taskArr.length === 0) {
         console.log('No tasks available.');
     } else {
         console.log('Here are your tasks:');
-        let minusAdd = "---------------------------";
-        for (let i = 0; i < allTaskLength; i++) {
-            minusAdd = minusAdd + "-";
-        };
+        
+        let longestTaskStr = taskList.map(item => item.taskName.length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
+        // console.log(longestTaskStr)
+        let minusAdd;
         for (let i = 0; i < taskArr.length; i++) {
             let taskName = taskArr[i].taskName;
-            for(let i = taskName.length; i < longestTaskStr+1; i++) {
-                taskName = taskName + " ";
-            }
+            taskName = taskName + " ".repeat(longestTaskStr - taskName.length);
+            let spaceAfterTaskValue = taskArr[i].id >= 10 ? " " : "  "; 
+            let taskLoggedValue = `| ${i + 1}. | ${taskName} | ${taskArr[i].status} | (id: ${taskArr[i].id})${spaceAfterTaskValue}|`; 
+            minusAdd = "-".repeat(taskLoggedValue.length);
             console.log(minusAdd);
-            console.log(`| ${i + 1}. | ${taskName} | ${taskArr[i].status} | (id: ${taskArr[i].id}) \t|`);
+            console.log(taskLoggedValue);
         }
         console.log(minusAdd);
     }
