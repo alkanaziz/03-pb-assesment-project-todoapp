@@ -18,25 +18,16 @@ const jsProject = `
  \\___/|____/  |_|   |_| \\_\\\\___/ \\___/|_____\\____| |_|  
 `;
 
-const toDoApp = `
- _ _ _____     ____             _               _ _ 
-( | )_   _|__ |  _ \\  ___      / \\   _ __  _ __( | )
- V V  | |/ _ \\| | | |/ _ \\    / _ \\ | '_ \\| '_ \\V V 
-      | | (_) | |_| | (_) |  / ___ \\| |_) | |_) |   
-      |_|\\___/|____/ \\___/  /_/   \\_\\ .__/| .__/    
-                                    |_|   |_|       
-`;
 
 console.log(dciWebDev);
 console.log(jsProject);
-console.log(toDoApp);
 
 var taskListJSON = fs.readFileSync('tasklist.json', 'utf8');
 let taskList = JSON.parse(taskListJSON);
 
 function taskListConvert(taskList) {
     taskListJSON = JSON.stringify(taskList);
-    // JSON'ı bir dosyaya yaz
+    // Write JSON to a file
     fs.writeFileSync('tasklist.json', taskListJSON);
 }
 
@@ -48,10 +39,10 @@ function displayTasks(taskArr) {
     if (taskArr.length === 0) {
         console.log('No tasks available.');
     } else {
-        console.log('Here are your tasks:');
-        
         let longestTaskStr = taskList.map(item => item.taskName.length).reduce((acc, currentValue) => Math.max(acc, currentValue), 0);
         // console.log(longestTaskStr)
+        console.log(`${"-".repeat((longestTaskStr+10)/2)}Here are your tasks:${"-".repeat((longestTaskStr+10)/2)}`);
+        
         let minusAdd;
         for (let i = 0; i < taskArr.length; i++) {
             let taskName = taskArr[i].taskName;
@@ -111,41 +102,59 @@ function searchTask() {
 }
 
 while (true) {
-    console.log("\n*****************************")
-    console.log("*****************************")
-    console.log('**     1. Display tasks    **');
-    console.log('**     2. Add task         **');
-    console.log('**     3. Delete task      **');
-    console.log('**     4. Edit task        **');
-    console.log('**     5. Search task      **');
-    console.log('**     6. Exit             **');
-    console.log("*****************************")
-    console.log("*****************************")
+    let toDoAppMenu = `${"*".repeat(3)} _ _ _____     ____             _               _ _ ${"*".repeat(3)}
+${"*".repeat(3)}( | )_   _|__ |  _ \\  ___      / \\   _ __  _ __( | )${"*".repeat(3)}
+${"*".repeat(3)} V V  | |/ _ \\| | | |/ _ \\    / _ \\ | '_ \\| '_ \\V V ${"*".repeat(3)}
+${"*".repeat(3)}      | | (_) | |_| | (_) |  / ___ \\| |_) | |_) |   ${"*".repeat(3)}
+${"*".repeat(3)}      |_|\\___/|____/ \\___/  /_/   \\_\\ .__/| .__/    ${"*".repeat(3)}
+${"*".repeat(3)}                                    |_|   |_|       ${"*".repeat(3)}
+${"*".repeat(3)}                                                    ${"*".repeat(3)}`;
 
-    const option = readlineSync.questionInt('Choose an option: ');
+    console.log(`\n${"*".repeat(58)}`)
+    console.log(`${"*".repeat(58)}`)
+    console.log(toDoAppMenu)
+    console.log(`${"*".repeat(58)}`)
+    console.log(`${"*".repeat(58)}`)
+    console.log(`${"*".repeat(15)}     1. Display tasks (D)    ${"*".repeat(14)}`);
+    console.log(`${"*".repeat(15)}     2. Add task (A)         ${"*".repeat(14)}`);
+    console.log(`${"*".repeat(15)}     3. Delete task (d)      ${"*".repeat(14)}`);
+    console.log(`${"*".repeat(15)}     4. Edit task (E)        ${"*".repeat(14)}`);
+    console.log(`${"*".repeat(15)}     5. Search task (S)      ${"*".repeat(14)}`);
+    console.log(`${"*".repeat(15)}     6. Exit (e)             ${"*".repeat(14)}`);
+    console.log(`${"*".repeat(58)}`);
+    console.log(`${"*".repeat(58)}`);
+
+    const option = readlineSync.question('Choose an option: ');
 
     switch (option) {
-        case 1:
+        case "1":
+        case "D":
             displayTasks(taskList);
             break;
-        case 2:
-            displayTasks(taskList)
+        case "2":
+        case "A":
+            displayTasks(taskList);
             addTask();
-            displayTasks(taskList)
+            displayTasks(taskList);
             break;
-        case 3:
-            displayTasks(taskList)
+        case "3":
+        case "d":
+            displayTasks(taskList);
             deleteTask();
             break;
-        case 4:
-            displayTasks(taskList)
+        case "4":
+        case "E":
+            displayTasks(taskList);
             editTask();
+            displayTasks(taskList);
             break;
-        case 5:
+        case "5":
+        case "S":
             console.clear();
             searchTask();
             break;
-        case 6:
+        case "6":
+        case "e":
             console.clear();
             process.exit(0);
         default:
