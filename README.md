@@ -2,6 +2,8 @@
 
 Dieses Projekt ist eine einfache command-line basierte Todo-Listen Applikation, die ich in JavaScript mit Node.js entwickelt habe. Sie ermöglicht den Benutzern/innen, ihre Aufgaben zu verwalten. Dazu bietet sie die Funktionen wie die Anzeige von Aufgaben, das Hinzufügen von neuen Aufgaben, das Löschen und Bearbeiten von Aufgaben und die Suche nach Aufgaben.
 
+![Todo App Wellcome Page](./wellcome-page.png)
+
 ## Technology:
 
 - ***Node.js***
