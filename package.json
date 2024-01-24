@@ -1,5 +1,17 @@
 {
   "dependencies": {
     "readline-sync": "^1.4.10"
-  }
+  },
+  "name": "03-pb-assesment-project-todoapp",
+  "description": "Dieses Projekt ist eine einfache command-line basierte Todo-Listen Applikation, die ich in JavaScript mit Node.js entwickelt habe. Sie ermöglicht den Benutzern/innen, ihre Aufgaben zu verwalten. Dazu bietet sie die Funktionen wie die Anzeige von Aufgaben, das Hinzufügen von neuen Aufgaben, das Löschen und Bearbeiten von Aufgaben und die Suche nach Aufgaben.",
+  "version": "1.0.0",
+  "main": "todoapp.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -1,6 +1,6 @@
 console.clear();
-const readlineSync = require('readline-sync');
-const fs = require('fs');
+import readlineSync from 'readline-sync';
+import fs from 'fs';
 
 
 var taskListJSON = fs.readFileSync('tasklist.json', 'utf8');
@@ -54,7 +54,7 @@ function addTask() {
 
 function deleteTask() {
     const id = readlineSync.questionInt('Enter the task id to delete: ');
-    taskIdList = taskList.map(m => m.id);
+    let taskIdList = taskList.map(m => m.id);
 
     if (taskIdList.includes(id)) {
         taskList = taskList.filter(task => task.id !== id);
