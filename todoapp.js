@@ -58,9 +58,9 @@ function displayTasks(taskArr) {
 }   
     
 function addTask() {
-    const taskName = readlineSync.question('Enter the task name: ');
-    // BUG TASK ID
-    const newTask = { id: taskList[taskList.length - 1].id + 1, taskName, status: 'pending' };
+    const taskName = readlineSync.question('Enter the new task name: ');
+    const newTaskId = taskList.length === 0 ? 1 : taskList[taskList.length - 1].id + 1;
+    const newTask = { id: newTaskId, taskName, status: 'pending' };
     taskList.push(newTask);
     console.log('Task added successfully.');
     taskListConvert(taskList);
