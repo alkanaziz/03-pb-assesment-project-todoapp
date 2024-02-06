@@ -2,7 +2,8 @@
 
 This is a simple command-line based Todo App implemented in JavaScript. It allows users to manage their tasks by adding, deleting, editing, and searching tasks.
 
-<img src="./wellcome-page.png" alt="Wellcome Page Photo" width="500px">
+<img src="./img/welcome-page.gif" alt="Wellcome Page Photo" width="500px">
+<img src="./img/welcome-page.png" alt="Wellcome Page Photo" width="500px">
 
 
 ## Features
@@ -33,3 +34,5 @@ This is a simple command-line based Todo App implemented in JavaScript. It allow
 
 - readline-sync: Used for reading user input from the command line.
 - fs: Used for reading and writing data to the tasklist.json file.
+- ora: Elegant terminal spinner.
+- chalk: Terminal string styling.

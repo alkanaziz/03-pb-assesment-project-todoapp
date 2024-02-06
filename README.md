@@ -2,17 +2,22 @@
 
 Dieses Projekt ist eine einfache command-line basierte Todo-Listen Applikation, die ich in JavaScript mit Node.js entwickelt habe. Sie ermöglicht den Benutzern/innen, ihre Aufgaben zu verwalten. Dazu bietet sie die Funktionen wie die Anzeige von Aufgaben, das Hinzufügen von neuen Aufgaben, das Löschen und Bearbeiten von Aufgaben und die Suche nach Aufgaben.
 
-<img src="./wellcome-page.png" alt="Wellcome Page Photo" width="500px">
+<img src="./img/welcome-page.gif" alt="Wellcome Page Photo" width="500px">
+<img src="./img/welcome-page.png" alt="Wellcome Page Photo" width="500px">
 
 ## Technology:
 
 - ***Node.js***
 
-## Bibliotheken:
+## Abhängigkeiten (Dependencies):
 
 - ***`readlineSync`***: Eine Node.js-Bibliothek, um die Eingaben von Benutzern zu bekommen.
 
 - ***`fs`***: Das is in Node.js eingebaute Modul zur Handhabung von Dateisystemoperationen (File System). Wird zum Lesen und Schreiben in die Datei tasklist.json verwendet.
+
+- ***`ora`***: Elegant terminal spinner.
+
+- ***`chalk`***: Terminal String Styling.
 
 ## Erste Schritte
 
